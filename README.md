@@ -14,7 +14,7 @@ The frontend that will consume/use the fragments backend
 1. Clone the repository
 
 ```bash
-git clone ttps://github.com/MansoorAZafar/fragments.git
+git clone https://github.com/MansoorAZafar/fragments-ui.git
 ```
 
 
