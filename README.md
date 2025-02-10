@@ -118,6 +118,7 @@ This is where all js functional files will exist.
 
 ### src/js/app.js
 - Defines the interactability between the index.html to amazon cognito and the api
+- Defines the interactability between the index.html and the EC2 instance / fragments API
 - Displays the username in a div and allows the user to sign in
 
 ### src/js/auth.js
