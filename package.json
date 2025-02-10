@@ -18,6 +18,7 @@
     "parcel": "^2.13.3"
   },
   "dependencies": {
+    "fragments-ui": "file:",
     "oidc-client-ts": "^3.1.0"
   }
 }
