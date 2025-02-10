@@ -24,3 +24,38 @@ export async function getUserFragments(user) {
     console.error('Unable to call GET /v1/fragment', { err });
   }
 }
+
+/**
+ * Creates a new fragment for the authenticated user by sending a POST request
+ * to the fragments microservice.
+ * 
+ * @param {Object} user - The authenticated user object (must include `authorizationHeaders()`).
+ * @param {Buffer} data - The binary data to store as a fragment.
+ * @param {string} contentType - The MIME type of the data (e.g., 'text/plain', 'application/json').
+ * @returns {Object} - The created fragment's details if successful, otherwise `null`.
+ */
+export async function createUserFragment(user, data, contentType) {
+  console.log('Creating a new user fragment...');
+
+  try {
+    const res = await fetch(`${apiUrl}/v1/fragments`, {
+      method: 'POST',
+      headers: {
+        ...user.authorizationHeaders(),
+        'Content-Type': contentType,
+      },
+      body: data,
+    });
+
+    if (!res.ok) {
+      throw new Error(`${res.status} ${res.statusText}`);
+    }
+
+    const responseData = await res.json();
+    console.log('Successfully created user fragment', responseData);
+    return responseData;
+  } catch (err) {
+    console.error('Unable to create fragment', { err });
+    return null;
+  }
+}

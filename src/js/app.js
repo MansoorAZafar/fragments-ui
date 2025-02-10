@@ -1,5 +1,5 @@
 import { signIn, getUser } from '../js/auth';
-import { getUserFragments } from "../js/api";
+import { getUserFragments, createUserFragment } from "../js/api";
 
 async function init() {
     // Get our UI elements
@@ -18,8 +18,13 @@ async function init() {
     return;
     }
 
+    const createdFragment = await createUserFragment(user, "Hello World", "text/plain");
+    console.log({createdFragment}, `Created User Fragment`);
+
     const userFragments = await getUserFragments(user);
     console.log({userFragments}, `User Fragments`);
+
+
 
     loginBtn.disabled = true;
     userSection.hidden = false;
