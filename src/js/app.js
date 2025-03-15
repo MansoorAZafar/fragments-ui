@@ -3,7 +3,7 @@ import { getUserFragments, createUserFragment } from "../js/api";
 
 async function init() {
     // Get our UI elements
-    const userSection = document.querySelector('#user');
+    const hiddenContent = document.querySelector('#hidden-content');
     const loginBtn = document.querySelector('#login');
 
     // Wire up event handlers to deal with login and logout.
@@ -18,17 +18,16 @@ async function init() {
     return;
     }
 
-    const createdFragment = await createUserFragment(user, "Hello World", "text/plain");
-    console.log({createdFragment}, `Created User Fragment`);
+    //const createdFragment = await createUserFragment(user, "Hello World", "text/plain");
+    //console.log({createdFragment}, `Created User Fragment`);
 
-    const userFragments = await getUserFragments(user);
-    console.log({userFragments}, `User Fragments`);
-
+    // const userFragments = await getUserFragments(user);
+    // console.log({userFragments}, `User Fragments`);
 
 
     loginBtn.disabled = true;
-    userSection.hidden = false;
-    userSection.querySelector('.username').innerText = user.username;
+    hiddenContent.hidden = false;
+    hiddenContent.querySelector('.username').innerText = user.username;
 }
 
 // Wait for the DOM to be ready, then start the app

@@ -1,0 +1,7 @@
+.github/
+.vscode/
+.parcel-cache/
+.env
+.gitignore
+node_modules/
+dist/
