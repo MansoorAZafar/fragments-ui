@@ -1,11 +1,18 @@
 {
+  "dependencies": {
+    "fragments-ui": "file:",
+    "oidc-client-ts": "^3.2.0",
+    "parcel": "^2.13.3",
+    "postcss": "^8.5.3",
+    "tough-cookie": "^5.1.2"
+  },
   "name": "fragments-ui",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "The frontend that will consume/use the fragments backend",
-  "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "npx parcel src/index.html"
+    "start": "npx parcel src/index.html",
+    "build": "parcel build src/index.html --dist-dir dist --public-url ./"
   },
   "repository": {
     "type": "git",
@@ -13,12 +20,5 @@
   },
   "keywords": [],
   "author": "Mansoor Zafar",
-  "license": "UNLICENSED",
-  "devDependencies": {
-    "parcel": "^2.13.3"
-  },
-  "dependencies": {
-    "fragments-ui": "file:",
-    "oidc-client-ts": "^3.1.0"
-  }
+  "license": "UNLICENSED"
 }
