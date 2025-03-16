@@ -16,14 +16,14 @@ COPY package.json package-lock.json ./
 RUN npm ci --only=production
 
 ##############################################################################
-# Stage 3:  Copy Source Code
+# Stage 3:  Copy Source Code & Define Args
 
 FROM node:20.17.0-alpine3.20@sha256:2d07db07a2df6830718ae2a47db6fedce6745f5bcd174c398f2acdda90a11c03 AS build
 
 WORKDIR /app
 
-COPY --from=dependencies --chown=node:node /app /app
-COPY --chown=node:node . .
+COPY --from=dependencies /app /app
+COPY  . .
 
 ##############################################################################
 # Stage 4:  Metadata
@@ -45,9 +45,7 @@ COPY --from=build /app/dist /usr/share/nginx/html
 
 EXPOSE 80
 
-USER node
-
 HEALTHCHECK --interval=3m \
     CMD wget --no-verbose --tries=1 --spider http://localhost || exit 1
 
-CMD ["nginx", "-g", "deamon off"]
+CMD ["nginx", "-g", "daemon off;"]

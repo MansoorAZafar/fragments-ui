@@ -1,4 +1,11 @@
-const apiUrl = process.env.API_URL || 'http://localhost:8080';
+let apiUrl = 'http://localhost:8080';
+
+// Set the api url properly
+try {
+  await fetch(`${apiUrl}`);
+} catch {
+  apiUrl = 'http://ec2-54-147-76-254.compute-1.amazonaws.com:8080';
+}
 
 /**
  * Given an authenticated user, request all fragments for this user from the
@@ -48,7 +55,7 @@ export async function getUserFragmentsExpanded(user) {
 /**
  * Creates a new fragment for the authenticated user by sending a POST request
  * to the fragments microservice.
- * 
+ *
  * @param {Object} user - The authenticated user object (must include `authorizationHeaders()`).
  * @param {Buffer} data - The binary data to store as a fragment.
  * @param {string} contentType - The MIME type of the data (e.g., 'text/plain', 'application/json').
