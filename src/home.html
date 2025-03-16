@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fragments UI Home Page</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 text-gray-900 flex flex-col items-center p-6">
+
+    <h1 class="text-3xl font-bold mb-6">Your Fragments</h1>
+
+    <!-- Load the basic fragments here -->
+    <ul id="fragments-list" class="space-y-2 mb-6"></ul>
+
+    <button id="load-frag-btn" class="bg-blue-500 text-white px-4 py-2 rounded-md mb-4 hover:bg-blue-600"">
+        Show Fragments Details
+    </button>
+
+    <!-- Fragments will be dynamically inserted here -->
+    <div id="fragments-container" 
+          class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 w-full max-w-4xl">
+    </div>
+
+
+    <h2 class="text-2xl font-semibold mt-8">Create a Fragment</h2>
+
+    <div class="bg-white shadow-md rounded-lg p-6 mt-4 w-full max-w-lg">
+        <label for="frag_type" class="block font-medium text-gray-700">Choose a type of fragment:</label>
+        <select id="frag_type" class="mt-2 block w-full p-2 border border-gray-300 rounded-md">
+            <option value="text/plain">text/plain</option>
+            <option value="text/markdown">text/markdown</option>
+            <option value="text/html">text/html</option>
+            <option value="application/json">application/json</option>
+        </select>
+
+        <textarea class="mt-4 w-full h-60 p-2 border border-gray-300 rounded-md" placeholder="Write your fragment..."></textarea>
+
+        <button id="create-frags-btn" class="bg-green-500 text-white px-4 py-2 mt-4 rounded-md w-full hover:bg-green-600">
+            Create Fragment
+        </button>
+    </div>
+    <script type="module" src="../src/js/home.js"></script>
+
+</body>
+</html>
