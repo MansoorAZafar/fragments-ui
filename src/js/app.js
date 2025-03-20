@@ -1,4 +1,5 @@
 import { signIn, getUser } from '../js/auth';
+import { getUserFragments } from '../js/api';
 
 async function init() {
   // Get our UI elements
@@ -16,6 +17,8 @@ async function init() {
   if (!user) {
     return;
   }
+
+  console.log(await getUserFragments(user));
 
   loginBtn.disabled = true;
   hiddenContent.hidden = false;
