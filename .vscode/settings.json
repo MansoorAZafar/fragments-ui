@@ -1,11 +1,12 @@
 {
     "files.exclude": {
-        "**/.git": true,
-        "**/.svn": true,
-        "**/.hg": true,
-        "**/.DS_Store": true,
-        "**/Thumbs.db": true,
-        "**/CVS": true
+      "**/.git": true,
+      "**/.svn": true,
+      "**/.hg": true,
+      "**/.DS_Store": true,
+      "**/Thumbs.db": true,
+      "**/node_modules": true,
+      "**/CVS": true
     },
     "editor.insertSpaces": true,
     "editor.tabSize": 2,

@@ -1,12 +1,5 @@
 let apiUrl = 'http://localhost:8080';
 
-// Set the api url properly
-try {
-  await fetch(`${apiUrl}`);
-} catch {
-  apiUrl = 'http://ec2-54-147-76-254.compute-1.amazonaws.com:8080';
-}
-
 /**
  * Given an authenticated user, request all fragments for this user from the
  * fragments microservice (currently only running locally). We expect a user
