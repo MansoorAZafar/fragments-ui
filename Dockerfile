@@ -1,29 +1,34 @@
 ##############################################################################
 # Stage 0:  Installing Alpine Linux + Node
 
-FROM node:20.17.0-alpine3.20@sha256:2d07db07a2df6830718ae2a47db6fedce6745f5bcd174c398f2acdda90a11c03 AS dependencies
+FROM node:20.17.0-alpine3.20@sha256:2d07db07a2df6830718ae2a47db6fedce6745f5bcd174c398f2acdda90a11c03 AS build
 
 ##############################################################################
-# Stage 1:  Setup of Work Directory
+# Stage 1:  Setup of Work Directory & Args
+
+# Define build arguments
+ARG AWS_COGNITO_POOL_ID
+ARG AWS_COGNITO_CLIENT_ID
+ARG OAUTH_SIGN_IN_REDIRECT_URL
+
+# Set them as environment variables for the build process
+ENV AWS_COGNITO_POOL_ID=$AWS_COGNITO_POOL_ID
+ENV AWS_COGNITO_CLIENT_ID=$AWS_COGNITO_CLIENT_ID
+ENV OAUTH_SIGN_IN_REDIRECT_URL=$OAUTH_SIGN_IN_REDIRECT_URL
 
 WORKDIR /app
 
 ##############################################################################
 # Stage 2:  Installing Dependencies
 
-COPY package.json package-lock.json ./
+COPY package*.json ./
 
-RUN npm ci --only=production
+RUN npm ci --production
 
 ##############################################################################
 # Stage 3:  Copy Source Code & Define Args
 
-FROM node:20.17.0-alpine3.20@sha256:2d07db07a2df6830718ae2a47db6fedce6745f5bcd174c398f2acdda90a11c03 AS build
-
-WORKDIR /app
-
-COPY --from=dependencies /app /app
-COPY  . .
+COPY ./src ./src
 
 ##############################################################################
 # Stage 4:  Metadata
@@ -41,7 +46,11 @@ RUN npm run build
 
 FROM nginx:1.26.3-alpine@sha256:d2c11a1e63f200585d8225996fd666436277a54e8c0ba728fa9afff28f075bd7 AS deploy
 
-COPY --from=build /app/dist /usr/share/nginx/html
+WORKDIR /usr/share/nginx/html
+
+RUN rm -rf ./*
+
+COPY --from=build /app/dist .
 
 EXPOSE 80
 

@@ -1,9 +1,9 @@
 import { UserManager } from 'oidc-client-ts';
 
 const cognitoAuthConfig = {
-  authority: `https://cognito-idp.us-east-1.amazonaws.com/us-east-1_W5lnkDhva`,
-  client_id: '2jqtbbejpfj1vm7t2csmenbesh',
-  redirect_uri: 'http://localhost:1234',
+  authority: `https://cognito-idp.us-east-1.amazonaws.com/${process.env.AWS_COGNITO_POOL_ID}`,
+  client_id: process.env.AWS_COGNITO_CLIENT_ID,
+  redirect_uri: process.env.OAUTH_SIGN_IN_REDIRECT_URL,
   response_type: 'code',
   scope: 'phone openid email',
   // no revoke of "access token" (https://github.com/authts/oidc-client-ts/issues/262)

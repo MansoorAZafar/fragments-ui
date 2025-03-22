@@ -1,4 +1,5 @@
-let apiUrl = 'http://localhost:8080';
+// eslint-disable-next-line no-undef
+let apiUrl = process.env.API_URL || 'http://localhost:8080';
 
 /**
  * Given an authenticated user, request all fragments for this user from the

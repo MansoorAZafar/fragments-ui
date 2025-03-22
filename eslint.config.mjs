@@ -14,7 +14,8 @@ export default [
   {
     languageOptions: {
       globals: {
-        ...globals.browser, // Add browser globals (document, alert, etc.)
+        ...globals.browser,
+        ...globals.node, // Add browser globals (document, alert, etc.)
         // You can also add any other custom globals if needed
       },
     },

@@ -8,11 +8,12 @@
   },
   "name": "fragments-ui",
   "version": "1.0.0",
+  "source": "./src/index.html",
   "description": "The frontend that will consume/use the fragments backend",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "eslint \"./src/**/*.js\"",
-    "start": "npx parcel src/index.html",
+    "start": "parcel",
     "build": "parcel build src/index.html --dist-dir dist --public-url ./"
   },
   "repository": {
